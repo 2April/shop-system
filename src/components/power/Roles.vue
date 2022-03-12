@@ -232,7 +232,7 @@ export default {
       this.$refs.addRolesForm.validate(async valid => {
         if (!valid) return
         const { data: res } = await this.$http.post('roles', this.addRolesForm)
-        console.log(res)
+        // console.log(res)
         if (res.meta.status !== 201) {
           return this.$message.error('添加角色失败!')
         }
@@ -254,7 +254,7 @@ export default {
         return this.$message.error('查询角色失败!')
       }
       this.editRolesForm = res.data
-      console.log(this.editRolesForm)
+      // console.log(this.editRolesForm)
       this.editDialogVisible = true
     },
     // 提交修改用户信息
