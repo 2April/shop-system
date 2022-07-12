@@ -15,15 +15,25 @@ import 'quill/dist/quill.core.css' // import styles
 import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
 
-
+// 导入NProgress包对应的JS和CSS
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 import axios from 'axios'
 
+
 // 配置请求根路径
 axios.defaults.baseURL = 'https://lianghj.top:8888/api/private/v1/'
-axios.interceptors.request.use(config => {
+    // 在reques拦截器中展示进度条NProgress.start()
+axios.interceptors.request.use((config) => {
+        NProgress.start()
         config.headers.Authorization = window.sessionStorage.getItem('token')
-            // 最后必须return config 
+            // 最后必须return config
+        return config
+    })
+    // 在response拦截器中隐藏进度条NProgress.done()
+axios.interceptors.response.use((config) => {
+        NProgress.done()
         return config
     })
     // 把包挂载在vue的原型上
@@ -52,5 +62,5 @@ Vue.filter('dateFormat', function(originVal) {
 
 new Vue({
     router,
-    render: h => h(App)
+    render: (h) => h(App)
 }).$mount('#app')

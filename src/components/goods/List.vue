@@ -6,6 +6,7 @@
       <el-breadcrumb-item>商品管理</el-breadcrumb-item>
       <el-breadcrumb-item>商品列表</el-breadcrumb-item>
     </el-breadcrumb>
+    <!-- 卡片视图区域 -->
     <el-card>
       <el-row :gutter="20">
         <el-col :span="8">
